@@ -1,0 +1,29 @@
+{
+  "name": "doctrina-programs",
+  "version": "0.0.1",
+  "description": "PaaS for course creators",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devshop24/Doctrina-Programs.git"
+  },
+  "keywords": [
+    "API",
+    "Node",
+    "SQL",
+    "RESTful"
+  ],
+  "author": "Devshop24",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devshop24/Doctrina-Programs/issues"
+  },
+  "homepage": "https://github.com/devshop24/Doctrina-Programs#readme",
+  "dependencies": {
+    "knex": "^0.21.1",
+    "sqlite3": "^4.2.0"
+  }
+}
