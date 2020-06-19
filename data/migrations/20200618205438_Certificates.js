@@ -3,7 +3,6 @@ exports.up = function(knex) {
     tbl.increments();
 
     tbl.string( 'title' ).notNullable();
-    tbl.string( 'name' ).notNullable();
     tbl.string( 'description' ).notNullable();
     tbl.string( 'URL' ).notNullable().unique();
   });

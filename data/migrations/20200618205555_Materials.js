@@ -3,7 +3,7 @@ exports.up = function(knex) {
     tbl.increments();
 
     tbl.string( 'name' ).notNullable();
-    tbl.string( 'link' ).notNullable();
+    tbl.string( 'URL' ).notNullable();
 
     tbl.integer( 'unit_id' ).notNullable()
                             .references( 'id' )

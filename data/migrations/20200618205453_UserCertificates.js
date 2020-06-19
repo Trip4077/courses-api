@@ -2,6 +2,8 @@ exports.up = function(knex) {
   return knex.schema.createTable( 'UserCertificates', tbl => {
     tbl.increments();
 
+    tbl.string( 'URL' ).notNullable();
+
     tbl.integer( 'uid' ).notNullable();
     tbl.integer( 'certificate_id' ).notNullable()
                                    .references( 'id' )
