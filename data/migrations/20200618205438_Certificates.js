@@ -2,10 +2,10 @@ exports.up = function(knex) {
   return knex.schema.createTable( 'Certificates', tbl => {
     tbl.increments();
 
-    tbl.string( 'title' ).notNullabe();
-    tbl.string( 'name' ).notNullabe();
-    tbl.string( 'description' ).notNullabe();
-    tbl.string( 'URL' ).notNullabe().unique();
+    tbl.string( 'title' ).notNullable();
+    tbl.string( 'name' ).notNullable();
+    tbl.string( 'description' ).notNullable();
+    tbl.string( 'URL' ).notNullable().unique();
   });
 };
 

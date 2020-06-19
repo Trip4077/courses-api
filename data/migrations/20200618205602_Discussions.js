@@ -4,7 +4,7 @@ exports.up = function(knex) {
 
     tbl.string( 'title' ).notNullable();
     
-    tbl.datetime('created_at', { precision: 6 }).defaultTo(knex.fn.now(6));
+    tbl.datetime('created_at').defaultTo(knex.fn.now());
 
     tbl.integer( 'course_id' ).notNullable()
                               .references( 'id' )
