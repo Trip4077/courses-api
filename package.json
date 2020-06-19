@@ -23,6 +23,7 @@
   },
   "homepage": "https://github.com/devshop24/Doctrina-Programs#readme",
   "dependencies": {
-    "knex": "^0.21.1"
+    "knex": "^0.21.1",
+    "sqlite3": "^4.2.0"
   }
 }
