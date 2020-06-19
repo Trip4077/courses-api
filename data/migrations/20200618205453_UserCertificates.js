@@ -1,7 +1,7 @@
 exports.up = function(knex) {
   return knex.schema.createTable( 'UserCertificates', tbl => {
     tbl.increments();
-
+    // Links to the hard copy for user
     tbl.string( 'URL' ).notNullable();
 
     tbl.integer( 'uid' ).notNullable();

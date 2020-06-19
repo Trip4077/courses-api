@@ -4,6 +4,7 @@ exports.up = function(knex) {
 
     tbl.string( 'title' ).notNullable();
     tbl.string( 'description' ).notNullable();
+    // Certification Home Page or Information
     tbl.string( 'URL' ).notNullable().unique();
   });
 };
