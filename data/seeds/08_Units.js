@@ -12,7 +12,17 @@ exports.seed = function(knex) {
         },
         {
           id: 2,
+          title: "Virtual Private Network (VPC)",
+          course_id: 1
+        },
+        {
+          id: 3,
           title: "DynamoDB",
+          course_id: 2
+        },
+        {
+          id: 4,
+          title: "S3",
           course_id: 2
         }
       ]);
