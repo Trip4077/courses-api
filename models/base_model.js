@@ -12,7 +12,7 @@ class BaseModel {
     getBy( filter ) {
         if( !filter ) throw Error( "No Filter Found" );
 
-        return db( this.name ).where( filter ).first();
+        return db( this.name ).where( filter );
     }
 
     async insert( data ) {
@@ -20,7 +20,9 @@ class BaseModel {
 
         await db( this.name ).insert( data );
 
-        return await db( this.name ).pop();
+        const items =  await db( this.name );
+
+        return items[ items.length-1 ]
     }
 
     async update( id, data ) {

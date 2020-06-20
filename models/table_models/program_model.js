@@ -1,4 +1,7 @@
 const BaseModel = require( '../base_model' );
+const Admins = require( './admin_model' );
+const Courses = require( './course_model' );
+const Certificates = require( './certificate_model' );
 const db = require( '../../data/config' );
 
 class Programs extends BaseModel {
@@ -16,7 +19,7 @@ class Programs extends BaseModel {
                                             .innerJoin( 'Certificates', 'Programs.certificate_id', '=', 'Certificates.id' )
 
         for(let i = 0; i < programs.length; i++) {
-          const courses = await this.getAllCourses( programs[i].program_id );
+          const courses = await Courses.getBy({ program_id: programs[i].program_id });
 
           programs[i].courses = courses;
         }
@@ -41,29 +44,10 @@ class Programs extends BaseModel {
 
         if( !program ) return {}
 
-        program.courses = await this.getAllCourses( program_id );
+        program.courses = await Courses.getBy({ program_id: program.program_id });
 
         return program;
     }
-
-    async getAllCourses( program_id ) {
-        const courses = await db( 'Courses' ).where({ program_id });
-
-        if( !courses ) return []
-        else return courses;
-    }
-
-    async insertCertificate( title, description, URL ) {
-      await db( 'Certificates' ).insert({ title, description, URL })
-
-      const certificates = await db('Certificates')
-
-      return certificates[ certificates.length-1 ]
-    }
-
-    async insertAdmin( uid, program_id ) {
-      return await db( 'Admins' ).insert({ uid, program_id })
-    } 
 
     /*
       { 
@@ -80,27 +64,27 @@ class Programs extends BaseModel {
     */
 
     async insertNewProgram( data ) {
-      const certificate = await this.insertCertificate( data.certificate_title, data.certificate_description, data.certificate_URL );
-    
-      await db( this.name ).insert({ 
-                                    title: data.program_title,
-                                    description: data.program_description,
-                                    price: data.program_price,
-                                    topic: data.program_topic,
-                                    duration: data.program_duration,
-                                    certificate_id: certificate.id
-                                  })
+      const certificate = await Certificates.insert({ 
+                                  title: data.certificate_title, 
+                                  description: data.certificate_description, 
+                                  URL: data.certificate_URL
+                                });
 
-      const programs = await db( this.name )
+      await this.insert({ 
+                          title: data.program_title,
+                          description: data.program_description,
+                          price: data.program_price,
+                          topic: data.program_topic,
+                          duration: data.program_duration,
+                          certificate_id: certificate.id
+                        });
+
+      const programs = await this.getAll();
       const program = programs[ programs.length-1 ]
 
-      await this.insertAdmin( data.admin_id, program.id );
+      await Admins.insert({ uid: data.admin_id, program_id: program.id });
 
       return program;
-    }
-
-    insert() {
-      console.log("Please Use Insert New Program")
     }
 
     async removeProgram( certificate_id, program_id ) {
