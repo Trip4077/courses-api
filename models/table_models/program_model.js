@@ -98,6 +98,17 @@ class Programs extends BaseModel {
 
       return program;
     }
+
+    insert() {
+      console.log("Please Use Insert New Program")
+    }
+
+    async removeProgram( certificate_id, program_id ) {
+      await db('Certificates').where({ id: certificate_id }).del();
+      await db('Admins').where({ program_id }).del();
+
+      return await db( this.name ).where({ id: program_id }).del();
+    }
 }
 
 module.exports = new Programs( 'Programs' );

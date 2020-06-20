@@ -15,20 +15,20 @@ class BaseModel {
         return db( this.name ).where( filter ).first();
     }
 
-    insert( data ) {
+    async insert( data ) {
         if( !data ) throw Error( "No Data To Add" );
 
-        db( this.name ).insert( data );
+        await db( this.name ).insert( data );
 
-        return db( this.name ).pop();
+        return await db( this.name ).pop();
     }
 
-    update( id, data ) {
+    async update( id, data ) {
         if( !id || !data ) throw Error( "Can not complete request with provided values" );
 
-        db( this.name ).where({ id }).update( data );
-
-        return db( this.name ).where({ id }).first();
+        await db( this.name ).where({ id }).update( data );
+      
+        return await db( this.name ).where({ id }).first();
     }
 
     remove( id ) {
