@@ -1,0 +1,5 @@
+const BaseModel = require( '../base_model' );
+
+class Messages extends BaseModel {}
+
+module.exports = new Messages( 'Messages' );

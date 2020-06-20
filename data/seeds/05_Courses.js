@@ -10,14 +10,20 @@ exports.seed = function(knex) {
           title: "Compute",
           description: "Covers the AWS Compute Services that appear on the Solutions Architect exam.",
           duration: "1 month",
-          price: 25.00 
+          price: 25.00,
+          program_id: 1,
+          certificate_id: 1,
+          instructor_id: 1
         },
         {
           id: 2,
           title: "Storage",
           description: "Covers the AWS Storage Services that appear on the Solutions Architect exam.",
           duration: "1 month",
-          price: 25.00 
+          price: 25.00,
+          program_id: 1,
+          certificate_id: 1,
+          instructor_id: 1
         }
       ]);
     });

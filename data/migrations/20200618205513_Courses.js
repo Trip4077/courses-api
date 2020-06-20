@@ -14,9 +14,14 @@ exports.up = function(knex) {
                                .onUpdate( 'CASCADE' );
 
     tbl.integer( 'certificate_id' ).references( 'id' )
-                                .inTable( 'Certificates' )
-                                .onDelete( 'CASCADE' )
-                                .onUpdate( 'CASCADE' );                          
+                                   .inTable( 'Certificates' )
+                                   .onDelete( 'CASCADE' )
+                                   .onUpdate( 'CASCADE' );   
+      
+    tbl.integer( 'instructor_id' ).references( 'id' )
+                                   .inTable( 'Instructors' )
+                                   .onDelete( 'CASCADE' )
+                                   .onUpdate( 'CASCADE' );                          
   });
 };
 
