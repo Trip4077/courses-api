@@ -35,11 +35,17 @@ router.get('/:id', async (req, res) => {
 
 router.post('/', async ( req, res ) => {
     try {
+        const program = req.body;
 
+        const new_program = await Programs.insertNewProgram( program );
+
+        res.status(201).json({ message: "Program Created Successfully", new_program });
     } 
     
     catch( err ) {
         console.log(('-' * 10) + err + ('-' * 10));
+
+        res.status(500).json({ message: "Program Could Not Be Created", err });
     }
 });
 
