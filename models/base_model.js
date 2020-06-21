@@ -10,9 +10,13 @@ class BaseModel {
     }
 
     getBy( filter ) {
-        if( !filter ) throw Error( "No Filter Found" );
+        try {
+            if( !filter ) throw Error( "No Filter Found" );
 
-        return db( this.name ).where( filter );
+            return db( this.name ).where( filter );
+        } catch(err) {
+            console.log(('-' * 10) + err + ('-' * 10))
+        }
     }
 
     async insert( data ) {
