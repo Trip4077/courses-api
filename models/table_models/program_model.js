@@ -6,17 +6,18 @@ const db = require( '../../data/config' );
 
 class Programs extends BaseModel {
     async getAllPrograms() {
+       try {
         const programs = await db( this.name ).select(
-                                                'Programs.id as program_id',
-                                                'Programs.title as program_name', 
-                                                'Programs.description as program_desc', 
-                                                'Programs.price as program_price', 
-                                                'Programs.duration as program_length', 
-                                                'Programs.topic as program_topic', 
-                                                'Certificates.title as certificate_name',
-                                                'Certificates.URL as certificate_link',
-                                            )
-                                            .innerJoin( 'Certificates', 'Programs.certificate_id', '=', 'Certificates.id' )
+                                                        'Programs.id as program_id',
+                                                        'Programs.title as program_name', 
+                                                        'Programs.description as program_desc', 
+                                                        'Programs.price as program_price', 
+                                                        'Programs.duration as program_length', 
+                                                        'Programs.topic as program_topic', 
+                                                        'Certificates.title as certificate_name',
+                                                        'Certificates.URL as certificate_link',
+                                                    )
+                                                    .innerJoin( 'Certificates', 'Programs.certificate_id', '=', 'Certificates.id' )
 
         for(let i = 0; i < programs.length; i++) {
           const courses = await Courses.getBy({ program_id: programs[i].program_id });
@@ -25,9 +26,13 @@ class Programs extends BaseModel {
         }
 
         return programs;
+      } catch (err) {
+        console.log(('-' * 10) + err + ('-' * 10));
+      }
     }
 
     async getProgramById( program_id ) {
+      try {
         const program = await db( this.name ).select(
                                                       'Programs.id as program_id',
                                                       'Programs.title as program_name', 
@@ -42,11 +47,14 @@ class Programs extends BaseModel {
                                                     .innerJoin( 'Certificates', 'Programs.certificate_id', '=', 'Certificates.id' )
                                                     .first();
 
-        if( !program ) return {}
+        if( !program ) return { message: `No Program with ID:${program_id}` }
 
         program.courses = await Courses.getBy({ program_id: program.program_id });
 
         return program;
+      } catch(err) {
+        console.log(('-' * 10) + err + ('-' * 10));
+      }
     }
 
     /*

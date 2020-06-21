@@ -1,5 +1,4 @@
 const BaseModel = require( '../base_model' );
-
 const db = require( '../../data/config' );
 
 class Units extends BaseModel {
@@ -7,6 +6,9 @@ class Units extends BaseModel {
         const unit_materials = await db( 'Units' ).innerJoin('Materials', 'Units.id', '=', 'Materials.unit_id')
                                   .select('Units.*', 'Materials.name as materials_name', 'Materials.URL as materials_link')
                                   .where('Units.id', '=', `${unit_id}`)
+
+        
+        if( unit_materials.length < 1 ) return 
 
         const unit_data = {
             id: unit_materials[0].id,
