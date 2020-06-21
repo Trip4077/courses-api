@@ -64,7 +64,7 @@ router.put('/:id', async ( req, res ) => {
 
         res.status(500).json({ message: "Program Could Not Be Updated", err });
     }
-})
+});
 
 router.delete('/:id', async ( req, res ) => {
     try {
@@ -80,6 +80,6 @@ router.delete('/:id', async ( req, res ) => {
 
         res.status(500).json({ message: `Error Deleting Program:${req.params.id}` });
     }
-})
+});
 
 module.exports = router;
