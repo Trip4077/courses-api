@@ -51,10 +51,9 @@ router.post('/', async ( req, res ) => {
 
 router.put('/:id', async ( req, res ) => {
     try {
-        const update_data = req.body;
-        const program_id = req.params.id;
+        if( !utils.validateIdParam( req.params.id ) || !req.body) res.status(403).json({ message: "Invalid ID or Update", id: req.params.id, body: req.body });
 
-        const updated_program = await Programs.update( program_id, update_data );
+        const updated_program = await Programs.update( req.params.id, req.body );
 
         res.status(201).json({ message: "Program Updated", updated_program });
     } 
