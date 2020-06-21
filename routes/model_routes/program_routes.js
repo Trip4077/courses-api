@@ -51,11 +51,18 @@ router.post('/', async ( req, res ) => {
 
 router.put('/:id', async ( req, res ) => {
     try {
+        const update_data = req.body;
+        const program_id = req.params.id;
 
+        const updated_program = await Programs.update( program_id, update_data );
+
+        res.status(201).json({ message: "Program Updated", updated_program });
     } 
     
     catch( err ) {
         console.log(('-' * 10) + err + ('-' * 10));
+
+        res.status(500).json({ message: "Program Could Not Be Updated", err });
     }
 })
 
