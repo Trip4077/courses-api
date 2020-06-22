@@ -9,6 +9,8 @@ router.get('/', async (_, res) => {
         res.status(200).json({ certificates });
     } catch(err) {
         console.log('----------' + err + '----------');
+
+        res.status(500).json({ message: "Error Getting Certficates", err});
     }
 });
 
@@ -21,6 +23,22 @@ router.get('/:id', async (req, res) => {
         res.status(200).json({ certificate });
     } catch(err) {
         console.log('----------' + err + '----------');
+
+        res.status(500).json({ message: "Error Getting Certficate", err});
+    }
+});
+
+router.post('/', async (req, res) => {
+    try {
+        const certificate = req.body;
+
+        const new_certificate = await Certificates.insert( certificate );
+
+        res.status(201).json({ message: "Certificate Added Successfully", new_certificate });
+    } catch(err) {
+        console.log('----------' + err + '----------');
+
+        res.status(500).json({ message: "Error Adding Certficate", err});
     }
 });
 
