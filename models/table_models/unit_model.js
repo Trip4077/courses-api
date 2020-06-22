@@ -16,7 +16,6 @@ class Units extends BaseModel {
         const unit_materials = await db( 'Materials' ).where({ unit_id });
         const [ unit ] = await this.getBy({ id: unit_id });
 
-        console.log(unit_materials, unit)
         unit.materials = unit_materials;
 
         return unit;
