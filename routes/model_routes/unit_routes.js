@@ -8,7 +8,7 @@ router.get('/', async (_, res) => {
         
         res.status(200).json({ units });
     } catch(err) {
-        console.log(('-' * 10) + err + ('-' * 10));
+        console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Getting Units", err });
     }
@@ -22,7 +22,7 @@ router.get('/:id', async (req, res) => {
         
         res.status(200).json({ unit });
     } catch(err) {
-        console.log(('-' * 10) + err + ('-' * 10));
+        console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Getting Unit", err });
     }
@@ -36,7 +36,7 @@ router.post('/', async (req, res) => {
 
         res.status(201).json({ new_unit });
     } catch(err) {
-        console.log(('-' * 10) + err + ('-' * 10));
+        console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Adding Unit", err });
     } 
@@ -50,7 +50,7 @@ router.put('/:id', async (req, res) => {
 
         res.status(200).json({ message: "Unit Updated", updated_unit });
     } catch(err) {
-        console.log(('-' * 10) + err + ('-' * 10));
+        console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Updating Unit", err });
     }
@@ -64,7 +64,7 @@ router.delete('/:id', async (req, res) => {
     
         res.status(200).json({ message: `Unit:${req.params.id} removed`, result });
     } catch(err) {
-        console.log(('-' * 10) + err + ('-' * 10));
+        console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Removing Unit", err });
     }

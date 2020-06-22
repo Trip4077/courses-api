@@ -27,7 +27,7 @@ class Programs extends BaseModel {
 
         return programs;
       } catch (err) {
-        console.log(('-' * 10) + err + ('-' * 10));
+        console.log('----------' + err + '----------');
       }
     }
 
@@ -53,7 +53,7 @@ class Programs extends BaseModel {
 
         return program;
       } catch(err) {
-        console.log(('-' * 10) + err + ('-' * 10));
+        console.log('----------' + err + '----------');
       }
     }
 
@@ -72,34 +72,42 @@ class Programs extends BaseModel {
     */
 
     async insertNewProgram( data ) {
-      const certificate = await Certificates.insert({ 
-                                  title: data.certificate_title, 
-                                  description: data.certificate_description, 
-                                  URL: data.certificate_URL
-                                });
+      try {
+        const certificate = await Certificates.insert({ 
+                                                        title: data.certificate_title, 
+                                                        description: data.certificate_description, 
+                                                        URL: data.certificate_URL
+                                                      });
 
-      await this.insert({ 
-                          title: data.program_title,
-                          description: data.program_description,
-                          price: data.program_price,
-                          topic: data.program_topic,
-                          duration: data.program_duration,
-                          certificate_id: certificate.id
-                        });
+        await this.insert({ 
+          title: data.program_title,
+          description: data.program_description,
+          price: data.program_price,
+          topic: data.program_topic,
+          duration: data.program_duration,
+          certificate_id: certificate.id
+        });
 
-      const programs = await this.getAll();
-      const program = programs[ programs.length-1 ]
+        const programs = await this.getAll();
+        const program = programs[ programs.length-1 ]
 
-      await Admins.insert({ uid: data.admin_id, program_id: program.id });
+        await Admins.insert({ uid: data.admin_id, program_id: program.id });
 
-      return program;
+        return program;
+      } catch(err) {
+
+      }
     }
 
     async removeProgram( certificate_id, program_id ) {
-      await db('Certificates').where({ id: certificate_id }).del();
-      await db('Admins').where({ program_id }).del();
-
-      return await db( this.name ).where({ id: program_id }).del();
+      try {
+        await db('Certificates').where({ id: certificate_id }).del();
+        await db('Admins').where({ program_id }).del();
+  
+        return await db( this.name ).where({ id: program_id }).del();
+      } catch(err) {
+        console.log('----------' + err + '----------');
+      }
     }
 }
 

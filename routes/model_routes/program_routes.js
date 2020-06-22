@@ -11,7 +11,7 @@ router.get('/', async (_, res) => {
     } 
     
     catch(err) {
-        console.log(('-' * 10) + err + ('-' * 10));
+        console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Getting Programs", err });
     }
@@ -27,7 +27,7 @@ router.get('/:id', async (req, res) => {
     } 
     
     catch(err) {
-        console.log(('-' * 10) + err + ('-' * 10));
+        console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Getting Program", err });
     }
@@ -43,7 +43,7 @@ router.post('/', async ( req, res ) => {
     } 
     
     catch( err ) {
-        console.log(('-' * 10) + err + ('-' * 10));
+        console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Program Could Not Be Created", err });
     }
@@ -59,7 +59,7 @@ router.put('/:id', async ( req, res ) => {
     } 
     
     catch( err ) {
-        console.log(('-' * 10) + err + ('-' * 10));
+        console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Program Could Not Be Updated", err });
     }
@@ -75,7 +75,7 @@ router.delete('/:id', async ( req, res ) => {
     } 
 
     catch( err ) {
-        console.log(('-' * 10) + err + ('-' * 10));
+        console.log('----------' + err + '----------');
 
         res.status(500).json({ message: `Error Deleting Program:${req.params.id}` });
     }
