@@ -2,24 +2,24 @@ const BaseModel = require( '../base_model' );
 const db = require( '../../data/config' );
 
 class Units extends BaseModel {
-    async getUnitData( unit_id ) {
-        const unit_materials = await db( 'Units' ).innerJoin('Materials', 'Units.id', '=', 'Materials.unit_id')
-                                  .select('Units.*', 'Materials.name as materials_name', 'Materials.URL as materials_link')
-                                  .where('Units.id', '=', `${unit_id}`)
+    async getUnitsWithData() {
+        const units = await this.getAll();
 
-        
-        if( unit_materials.length < 1 ) return 
-
-        const unit_data = {
-            id: unit_materials[0].id,
-            title: unit_materials[0].title,
-            course_id: unit_materials[0].course_id,
-            materials: []
+        for(let i = 0; i < units.length; i++) {
+            units[i] = await this.getUnitData( units[i].id );
         }
 
-        unit_materials.forEach(material => unit_data.materials.push({ name: material.materials_name, link: material.materials_link }));
+        return units
+    }
 
-        return unit_data;
+    async getUnitData( unit_id ) {
+        const unit_materials = await db( 'Materials' ).where({ unit_id });
+        const [ unit ] = await this.getBy({ id: unit_id });
+
+        console.log(unit_materials, unit)
+        unit.materials = unit_materials;
+
+        return unit;
     }
 }
 
