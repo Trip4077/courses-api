@@ -56,4 +56,18 @@ router.put('/:id', async (req, res) => {
     }
 })
 
+router.delete('/:id', async (req, res) => {
+    try {
+        if( !utils.validateIdParam( req.params.id )) res.status(403).json({ message: "Invalid ID", id: req.params.id });
+
+        const result = await Certificates.remove( req.params.id );
+
+        res.status(200).json({ message: "Certificate Removed Successfully", result });
+    } catch(err) {
+        console.log('----------' + err + '----------');
+
+        res.status(500).json({ message: "Error Removing Certficate", err});
+    }
+})
+
 module.exports = router;
