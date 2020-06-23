@@ -64,4 +64,20 @@ router.put('/:id', async (req, res) => {
     }
 });
 
+router.delete('/:id', async (req, res) => {
+    try {
+        if( !utils.validateIdParam( req.params.id )) res.status(403).json({ message: "Invalid ID", id: req.params.id });
+
+        const result = await Messages.remove( req.params.id );
+
+        res.status(200).json({ message: `Message:${req.params.id} removed`, result });
+    }
+
+    catch(err) {
+        console.log('----------' + err + '----------');
+
+        res.status(500).json({ message: "Error Getting Message", err }); 
+    }
+});
+
 module.exports = router;
