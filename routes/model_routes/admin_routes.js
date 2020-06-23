@@ -44,7 +44,7 @@ router.post('/', async (req, res) => {
     catch(err) {
         console.log('----------' + err + '----------');
 
-        res.status(500).json({ message: "Error Getting Admins", err });
+        res.status(500).json({ message: "Error Adding Admin", err });
     }
 });
 
@@ -76,7 +76,7 @@ router.delete('/:id', async (req, res) => {
     catch(err) {
         console.log('----------' + err + '----------');
 
-        res.status(500).json({ message: "Error Removing Unit", err });
+        res.status(500).json({ message: "Error Removing Instructor", err });
     }
 });
 
