@@ -8,7 +8,9 @@ class BaseModel {
     getAll() {
         try {
             return db( this.name );
-        } catch(err) {
+        } 
+        
+        catch(err) {
             console.log('----------' + err + '----------');
         }
     }
@@ -18,7 +20,9 @@ class BaseModel {
             if( !filter ) throw Error( "No Filter Found" );
 
             return db( this.name ).where( filter );
-        } catch(err) {
+        } 
+        
+        catch(err) {
             console.log('----------' + err + '----------');
         }
     }
@@ -32,7 +36,9 @@ class BaseModel {
             const items =  await db( this.name );
     
             return items[ items.length-1 ]
-        } catch(err) {
+        } 
+        
+        catch(err) {
             console.log('----------' + err + '----------');
         }
     }
@@ -44,7 +50,9 @@ class BaseModel {
             await db( this.name ).where({ id }).update( data );
           
             return await db( this.name ).where({ id }).first();
-        } catch (err) {
+        } 
+        
+        catch (err) {
             console.log('----------' + err + '----------');
         }
     }
@@ -54,7 +62,9 @@ class BaseModel {
             if( !id ) throw Error( "No ID Found" );
 
             return db( this.name ).where({ id }).del();
-        } catch(err) {
+        } 
+        
+        catch(err) {
             console.log('----------' + err + '----------');
         }
     }

@@ -7,7 +7,9 @@ router.get('/', async (_, res) => {
         const courses = await Courses.getAllCourses();
         
         res.status(200).json({ courses });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Getting Courses", err });
@@ -21,7 +23,9 @@ router.get('/:id', async (req, res) => {
         const course = await Courses.getCourseById(req.params.id);
 
         res.status(200).json({ course });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Getting Courses", err });
@@ -35,7 +39,9 @@ router.post('/', async (req, res) => {
         const new_course = await Courses.insert( course );
 
         res.status(201).json({ new_course });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Adding Courses", err });
@@ -49,7 +55,9 @@ router.put('/:id', async (req, res) => {
         const updated_course = await Courses.update( req.params.id, req.body );
 
         res.status(200).json({ message: "Course Updated", updated_course });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Updating Course", err });
@@ -63,7 +71,9 @@ router.delete('/:id', async (req, res) => {
         const result = await Courses.remove( req.params.id );
     
         res.status(200).json({ message: `Course:${req.params.id} removed`, result });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Removing Course", err });

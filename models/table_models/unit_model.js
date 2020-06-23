@@ -11,7 +11,9 @@ class Units extends BaseModel {
             }
     
             return units
-        } catch(err) {
+        } 
+        
+        catch(err) {
             console.log('----------' + err + '----------');
         }
     }
@@ -24,7 +26,9 @@ class Units extends BaseModel {
             unit.materials = unit_materials;
     
             return unit;
-        } catch(err) {
+        } 
+        
+        catch(err) {
             console.log('----------' + err + '----------');
         }
     }

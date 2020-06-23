@@ -7,7 +7,9 @@ router.get('/', async (_, res) => {
         const units = await Units.getUnitsWithData();
         
         res.status(200).json({ units });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Getting Units", err });
@@ -21,7 +23,9 @@ router.get('/:id', async (req, res) => {
         const unit = await Units.getUnitData( req.params.id );
         
         res.status(200).json({ unit });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Getting Unit", err });
@@ -35,7 +39,9 @@ router.post('/', async (req, res) => {
         const new_unit = await Units.insert( unit );
 
         res.status(201).json({ new_unit });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Adding Unit", err });
@@ -49,7 +55,9 @@ router.put('/:id', async (req, res) => {
         const updated_unit = await Units.update( req.params.id, req.body );
 
         res.status(200).json({ message: "Unit Updated", updated_unit });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Updating Unit", err });
@@ -63,7 +71,9 @@ router.delete('/:id', async (req, res) => {
         const result = await Units.remove( req.params.id );
     
         res.status(200).json({ message: `Unit:${req.params.id} removed`, result });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Removing Unit", err });

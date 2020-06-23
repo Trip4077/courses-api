@@ -21,7 +21,9 @@ class Courses extends BaseModel {
             }
     
             return courses;
-        } catch (err) {
+        } 
+        
+        catch (err) {
             console.log('----------' + err + '----------');
 
             res.status(500).json({ message: `Error Getting Course:${course_id}` })
@@ -41,7 +43,9 @@ class Courses extends BaseModel {
             }
 
             return course;
-        } catch(err) {
+        } 
+        
+        catch(err) {
             console.log('----------' + err + '----------');
         }
     }

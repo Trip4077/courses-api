@@ -26,7 +26,9 @@ class Programs extends BaseModel {
         }
 
         return programs;
-      } catch (err) {
+      } 
+      
+      catch (err) {
         console.log('----------' + err + '----------');
       }
     }
@@ -52,7 +54,9 @@ class Programs extends BaseModel {
         program.courses = await Courses.getBy({ program_id: program.program_id });
 
         return program;
-      } catch(err) {
+      } 
+      
+      catch(err) {
         console.log('----------' + err + '----------');
       }
     }
@@ -94,8 +98,10 @@ class Programs extends BaseModel {
         await Admins.insert({ uid: data.admin_id, program_id: program.id });
 
         return program;
-      } catch(err) {
-
+      } 
+      
+      catch(err) {
+        console.log('----------' + err + '----------');
       }
     }
 
@@ -105,7 +111,9 @@ class Programs extends BaseModel {
         await db('Admins').where({ program_id }).del();
   
         return await db( this.name ).where({ id: program_id }).del();
-      } catch(err) {
+      } 
+      
+      catch(err) {
         console.log('----------' + err + '----------');
       }
     }

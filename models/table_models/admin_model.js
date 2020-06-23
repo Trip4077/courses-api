@@ -6,7 +6,9 @@ class Admins extends BaseModel {
         try {
             return await db( this.name ).select( 'Admins.uid as uid', 'Admins.id as id', 'Programs.*', 'Programs.id as program_id' )
                                         .innerJoin( 'Programs', 'Admins.program_id', '=', 'Programs.id' );
-        } catch(err) {
+        } 
+        
+        catch(err) {
             console.log('----------' + err + '----------');
         }
     }
@@ -16,7 +18,9 @@ class Admins extends BaseModel {
             return await db(this.name).select( 'Admins.uid as uid', 'Admins.id as id', 'Programs.*', 'Programs.id as program_id' )
                                       .innerJoin( 'Programs', 'Admins.program_id', '=', 'Programs.id' )
                                       .where( 'Admins.uid', '=', `${user_id}` );
-        } catch(err) {
+        } 
+        
+        catch(err) {
             console.log('----------' + err + '----------');
         }
     }

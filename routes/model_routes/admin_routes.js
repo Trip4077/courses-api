@@ -7,7 +7,9 @@ router.get('/', async (_, res) => {
         const admins = await Admins.getDetails();
 
         res.status(200).json({ admins });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Getting Admins", err });
@@ -21,7 +23,9 @@ router.get('/:id', async (req, res) => {
         const [ admin ] = await Admins.getDetail( req.params.id );
 
         res.status(200).json({ admin });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Getting Admins", err });
@@ -35,7 +39,9 @@ router.post('/', async (req, res) => {
         const new_admin = await Admins.insert( admin );
 
         res.status(201).json({ message: "Admin Added Successfully", new_admin });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Getting Admins", err });
@@ -49,7 +55,9 @@ router.put('/:id', async (req, res) => {
         const updated_admin = await Admins.update( req.params.id, req.body );
 
         res.status(200).json({ message: "Admin Updated", updated_admin });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Updating Admins", err });
@@ -63,11 +71,13 @@ router.delete('/:id', async (req, res) => {
         const result = await Admins.remove( req.params.id );
     
         res.status(200).json({ message: `Admin:${req.params.id} removed`, result });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Removing Unit", err });
     }
-})
+});
 
 module.exports = router;

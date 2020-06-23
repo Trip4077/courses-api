@@ -7,7 +7,9 @@ router.get('/', async (_, res) => {
         const materials = await Materials.getAll();
 
         res.status(200).json({ materials });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Getting Materials", err });
@@ -21,7 +23,9 @@ router.get('/:id', async (req, res) => {
         const material = await Materials.getBy({ id: req.params.id });
 
         res.status(200).json({ material });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Getting Material", err });
@@ -35,7 +39,9 @@ router.post('/', async (req, res) => {
         const new_material = await Materials.insert( material );
 
         res.status(201).json({ new_material });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Adding Materials", err });
@@ -49,7 +55,9 @@ router.put('/:id', async (req, res) => {
         const updated_material = await Materials.update( req.params.id, req.body );
 
         res.status(200).json({ message: "Material Updated", updated_material });
-    } catch(err) {
+    }
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Updating Material", err });
@@ -63,7 +71,9 @@ router.delete('/:id', async (req, res) => {
         const result = await Materials.remove( req.params.id );
     
         res.status(200).json({ message: `Material:${req.params.id} removed`, result });
-    } catch(err) {
+    } 
+    
+    catch(err) {
         console.log('----------' + err + '----------');
 
         res.status(500).json({ message: "Error Removing Material", err });
