@@ -7,6 +7,7 @@ const material_routes = require( './model_routes/material_routes' );
 const certificate_routes = require( './model_routes/certificate_routes' );
 
 const admin_routes = require( './model_routes/admin_routes' );
+const instructor_routes = require( './model_routes/instructor_routes' );
 
 router.get('/', async (_, res) => res.json({ message: "Server Running", code: 200, status: "OK" }));
 
@@ -17,5 +18,6 @@ router.use('/materials', material_routes);
 router.use('/certificates', certificate_routes);
 
 router.use('/admins', admin_routes);
+router.use('/instructors', instructor_routes);
 
 module.exports = router;
