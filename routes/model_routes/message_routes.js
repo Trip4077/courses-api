@@ -19,7 +19,7 @@ router.get('/', async (_, res) => {
 router.get('/:id', async (req, res) => {
     try {
         if( !utils.validateIdParam( req.params.id )) res.status(403).json({ message: "Invalid ID", id: req.params.id });
-
+        
         const message = await Messages.getBy({ id: req.params.id });
 
         res.status(200).json({ message });
