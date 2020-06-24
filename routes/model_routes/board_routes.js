@@ -60,7 +60,7 @@ router.put('/:id', async (req, res) => {
     catch(err) {
         console.log('----------' + err + '----------');
 
-        res.status(500).json({ message: "Error Adding Board", err });
+        res.status(500).json({ message: "Error Updating Board", err });
     }
 });
 
