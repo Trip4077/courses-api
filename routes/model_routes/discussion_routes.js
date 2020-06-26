@@ -4,7 +4,7 @@ const router = require( 'express' ).Router();
 
 router.get('/', async (_, res) => {
     try {
-        const discussions = await Discussions.getAll();
+        const discussions = await Discussions.getWithBoards();
 
         res.status(200).json({ discussions });
     }

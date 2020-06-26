@@ -5,6 +5,7 @@ exports.up = function(knex) {
     tbl.string( 'content' ).notNullable();
     tbl.datetime('created_at').defaultTo(knex.fn.now());
 
+    tbl.integer( 'reply_to' ).defaultTo( null );
     tbl.integer( 'uid' ).notNullable();
     tbl.integer( 'board_id' ).notNullable()
                              .references( 'id' )

@@ -4,7 +4,7 @@ const router = require( 'express' ).Router();
 
 router.get('/', async (_, res) => {
     try {
-        const boards = await Boards.getAll();
+        const boards = await Boards.getDetails();
 
         res.status(200).json({ boards });
     }
@@ -20,7 +20,7 @@ router.get('/:id', async (req, res) => {
     try {
         if( !utils.validateIdParam( req.params.id )) res.status(403).json({ message: "Invalid ID", id: req.params.id });
 
-        const [ board ] = await Boards.getBy({ id: req.params.id });
+        const [ board ] = await Boards.getDetail( req.params.id );
 
         res.status(200).json({ board });
     }
