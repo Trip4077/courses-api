@@ -20,7 +20,7 @@ router.get('/:id', async (req, res) => {
     try {
         if( !utils.validateIdParam( req.params.id )) res.status(403).json({ message: "Invalid ID", id: req.params.id });
 
-        const material = await Materials.getBy({ id: req.params.id });
+        const [ material ] = await Materials.getBy({ id: req.params.id });
 
         res.status(200).json({ material });
     } 
