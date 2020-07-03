@@ -1,0 +1,40 @@
+{
+  "name": "doctrina-programs",
+  "version": "0.0.1",
+  "description": "PaaS for course creators",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "serve": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devshop24/Doctrina-Programs.git"
+  },
+  "keywords": [
+    "API",
+    "Node",
+    "SQL",
+    "RESTful"
+  ],
+  "author": "Devshop24",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/devshop24/Doctrina-Programs/issues"
+  },
+  "homepage": "https://github.com/devshop24/Doctrina-Programs#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "helmet": "^3.23.1",
+    "knex": "^0.21.1",
+    "morgan": "^1.10.0",
+    "pg": "^8.2.1",
+    "sqlite3": "^4.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
