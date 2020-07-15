@@ -18,10 +18,7 @@ exports.up = function(knex) {
                                    .onDelete( 'CASCADE' )
                                    .onUpdate( 'CASCADE' );   
       
-    tbl.integer( 'instructor_id' ).references( 'id' )
-                                   .inTable( 'Instructors' )
-                                   .onDelete( 'CASCADE' )
-                                   .onUpdate( 'CASCADE' );                          
+    tbl.integer( 'instructor_id' ).notNullable();                        
   });
 };
 
