@@ -5,7 +5,7 @@ exports.up = function(knex) {
     tbl.integer( 'uid' ).notNullable();
     tbl.integer( 'program_id' ).notNullable()
                                .references( 'id' )
-                               .inTable( 'Users' )
+                               .inTable( 'Programs' )
                                .onDelete( 'CASCADE' )
                                .onUpdate( 'CASCADE' );
   });
