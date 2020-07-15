@@ -1,6 +1,8 @@
 const Materials = require( '../../models/table_models/material_model' );
+const formidable = require( 'express-formidable' );
 const utils = require( '../../util/router_utils' );
 const router = require( 'express' ).Router();
+const post_router = require( 'express' ).Router();
 
 router.get('/', async (_, res) => {
     try {
@@ -32,12 +34,13 @@ router.get('/:id', async (req, res) => {
     }
 });
 
-router.post('/', async (req, res) => {
+post_router.use( formidable() );
+post_router.post('/', async (req, res) => {
     try {
-        const material = req.body;
-
-        const new_material = await Materials.insert( material );
-
+        const material = { unit_id:req.fields.unit_id, fileContent: req.files.file_content };
+        
+        const new_material = await Materials.insertMaterial( material );
+       
         res.status(201).json({ new_material });
     } 
     
@@ -80,4 +83,4 @@ router.delete('/:id', async (req, res) => {
     }
 });
 
-module.exports = router;
+module.exports = { main: router, post: post_router };
