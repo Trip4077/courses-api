@@ -16,7 +16,7 @@ router.get('/', async (_, res) => res.json({ message: "Server Running", code: 20
 router.use('/programs', program_routes);
 router.use('/courses', course_routes);
 router.use('/units', unit_routes);
-router.use('/materials', material_routes);
+router.use('/materials', material_routes.main, material_routes.post);
 router.use('/certificates', certificate_routes);
 router.use('/admins', admin_routes);
 router.use('/instructors', instructor_routes);
